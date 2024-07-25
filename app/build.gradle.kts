@@ -49,7 +49,9 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     val nav_version = "2.7.7"
     //Navigation - Fragment
+    //noinspection UseTomlInstead
     implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
+    //noinspection UseTomlInstead
     implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
 
     val room_version = "2.6.1"
@@ -58,7 +60,7 @@ dependencies {
     annotationProcessor("androidx.room:room-compiler:$room_version")
     ksp("androidx.room:room-compiler:$room_version")
 
-    implementation("anroidx.room:room-rxjava3:$room_version")
+    //implementation("anroidx.room:room-rxjava3:$room_version")
     implementation("io.reactivex.rxjava3:rxandroid:3.0.2")
 
 }
