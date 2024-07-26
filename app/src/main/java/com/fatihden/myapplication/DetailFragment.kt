@@ -1,10 +1,13 @@
 package com.fatihden.myapplication
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import com.fatihden.myapplication.databinding.FragmentDetailBinding
 
 
@@ -45,6 +48,23 @@ class DetailFragment : Fragment() {
                 // Eskini getir-göster :
                 binding.deleteDetailBtn.isEnabled = true
                 binding.saveDetailBtn.isEnabled = false
+            }
+        }
+
+        binding.imageView.setOnClickListener {
+            if (
+                    ContextCompat.checkSelfPermission
+                        (
+                            requireContext(),
+                            Manifest.permission.READ_EXTERNAL_STORAGE
+                        ) !=PackageManager.PERMISSION_GRANTED
+                )
+            {
+                // İzin Verilmemiş, izin istememiz gerekli
+            }else{
+                //izin Verilmiş , galeriye erişim sağlanır
+
+
             }
         }
 
