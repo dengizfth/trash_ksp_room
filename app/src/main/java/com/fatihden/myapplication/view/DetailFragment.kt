@@ -43,7 +43,9 @@ class DetailFragment : Fragment() {
     private var secilenGorsel: Uri? = null  // gorselin dizinini verir
     private var secilenBitmap: Bitmap? = null // Gorsele çevirme işlemi
 
-
+    // Database :
+    private lateinit var db : DetailDatabase
+    private lateinit var detailDAO: DetailDAO
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,7 +53,9 @@ class DetailFragment : Fragment() {
 
         // Dikkat !
         registerLauncher()
-
+        // Database
+        db = Room.databaseBuilder(requireContext(),DetailDatabase::class.java,"Details").build()
+        detailDAO = db.detailDao()
 
     }
 
