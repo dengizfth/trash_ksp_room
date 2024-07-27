@@ -20,8 +20,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.room.Room
 import com.fatihden.myapplication.databinding.FragmentDetailBinding
+import com.fatihden.myapplication.db.DetailDAO
+import com.fatihden.myapplication.db.DetailDatabase
+import com.fatihden.myapplication.model.Detail
 import com.google.android.material.snackbar.Snackbar
+import java.io.ByteArrayOutputStream
 import java.io.IOException
 
 
@@ -39,9 +44,15 @@ class DetailFragment : Fragment() {
     private var secilenBitmap: Bitmap? = null // Gorsele çevirme işlemi
 
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Dikkat !
         registerLauncher()
+
+
     }
 
     override fun onCreateView(
@@ -148,6 +159,25 @@ class DetailFragment : Fragment() {
         }
 
 
+        binding.saveDetailBtn.setOnClickListener {
+            val isim = binding.nameETxt.text.toString()
+            val detay= binding.detailETxt.text.toString()
+
+
+            if (secilenBitmap != null){
+                val kucukBitMap = kucukBitmapOlustur(secilenBitmap!!,300)
+                val outputStream = ByteArrayOutputStream()
+
+                kucukBitMap.compress(Bitmap.CompressFormat.PNG , 50 , outputStream)
+                val byteDizisi = outputStream.toByteArray()
+
+                val tarif = Detail(isim,detay,byteDizisi)
+
+
+            }
+
+        }
+
     }
 
     override fun onDestroy() {
@@ -214,5 +244,29 @@ class DetailFragment : Fragment() {
 
     }
 
+    fun kucukBitmapOlustur( kullanicininSectigiBitmap:Bitmap,maxBoyut:Int):Bitmap{
+        var width = kullanicininSectigiBitmap.width
+        var height = kullanicininSectigiBitmap.height
+        var orani:Double = width.toDouble() / height.toDouble()
+        var boyut:Bitmap
 
+
+        if (orani >1 ){
+            // img vertical
+            width = maxBoyut
+            val kisaltilmisYukseklik = width / orani
+            height = kisaltilmisYukseklik.toInt()
+            boyut =  Bitmap.createScaledBitmap(kullanicininSectigiBitmap, width,height,true)
+        } else {
+            // img horizantel
+            height = maxBoyut
+            val kisaltilmisGenislik = height * orani
+            width = kisaltilmisGenislik.toInt()
+            boyut =  Bitmap.createScaledBitmap(kullanicininSectigiBitmap, width,height,true)
+
+        }
+
+
+        return boyut
+    }
 }
