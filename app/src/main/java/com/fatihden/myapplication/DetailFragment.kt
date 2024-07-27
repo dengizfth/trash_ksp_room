@@ -7,8 +7,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.fatihden.myapplication.databinding.FragmentDetailBinding
+import com.google.android.material.snackbar.Snackbar
 
 
 class DetailFragment : Fragment() {
@@ -61,6 +63,27 @@ class DetailFragment : Fragment() {
                 )
             {
                 // İzin Verilmemiş, izin istememiz gerekli
+                if(ActivityCompat.shouldShowRequestPermissionRationale(
+                        requireActivity(),
+                        Manifest.permission.READ_EXTERNAL_STORAGE
+                        )
+                    ){
+                    //SnackBar göstermemiz lazım , kullanıcıdan neden izin istediğimizi bir kez
+                    // daha söylerek izin istemeiz lazım
+                    Snackbar.make(view,"Galeriye ulaşıp görsel seçmemiz lazım!",Snackbar.LENGTH_INDEFINITE).setAction(
+                        "İzin Ver",
+                        View.OnClickListener {
+                            // İzin İstenilecek :
+
+                        }
+                    ).show()
+
+                }else{
+                    // İzin istenilecek
+                }
+
+
+
             }else{
                 //izin Verilmiş , galeriye erişim sağlanır
 
