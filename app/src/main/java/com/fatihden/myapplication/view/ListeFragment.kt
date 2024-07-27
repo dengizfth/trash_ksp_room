@@ -1,4 +1,4 @@
-package com.fatihden.myapplication
+package com.fatihden.myapplication.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

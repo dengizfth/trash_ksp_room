@@ -1,4 +1,4 @@
-package com.fatihden.myapplication
+package com.fatihden.myapplication.view
 
 import android.Manifest
 import android.content.Intent
