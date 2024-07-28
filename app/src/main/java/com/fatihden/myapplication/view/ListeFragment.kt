@@ -10,7 +10,9 @@ import androidx.room.Room
 import com.fatihden.myapplication.databinding.FragmentListeBinding
 import com.fatihden.myapplication.db.DetailDAO
 import com.fatihden.myapplication.db.DetailDatabase
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
+import io.reactivex.rxjava3.schedulers.Schedulers
 
 
 class ListeFragment : Fragment() {
@@ -64,6 +66,14 @@ class ListeFragment : Fragment() {
         super.onDestroy()
         _binding = null
         mDisposable.clear() // Ram'de yer kaplayan geçici verileri uygulama kapatılınca Ram'deki verileri temizlemek için tercih edilir .
+    }
+    private fun  verileriAl(){
+        mDisposable.add(
+            detailDAO.getAll()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe()
+        )
     }
 
 }
