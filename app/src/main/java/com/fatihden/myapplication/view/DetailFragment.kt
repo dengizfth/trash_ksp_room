@@ -20,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import androidx.room.Room
 import com.fatihden.myapplication.databinding.FragmentDetailBinding
 import com.fatihden.myapplication.db.DetailDAO
@@ -207,6 +208,7 @@ class DetailFragment : Fragment() {
     private fun handleResponseForInsert(){
         // İnsert işlemden sonra burası çalışır. Buraki Fuck'ın yukarıda tetiklenir.
         val action  = DetailFragmentDirections.actionDetailFragmentToListeFragment()
+        Navigation.findNavController(requireView()).navigate(action)
 
     }
 
