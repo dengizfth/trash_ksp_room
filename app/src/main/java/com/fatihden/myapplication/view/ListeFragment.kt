@@ -60,6 +60,9 @@ class ListeFragment : Fragment() {
             val action = ListeFragmentDirections.actionListeFragmentToDetailFragment(bilgi = "yeni",id=0)
             Navigation.findNavController(it).navigate(action)
         }
+
+
+        verileriAl() // Veritabı işlemleri çalıştırılması
     }
 
 
