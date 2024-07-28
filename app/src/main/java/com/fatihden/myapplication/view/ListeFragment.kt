@@ -77,7 +77,9 @@ class ListeFragment : Fragment() {
         )
     }
     private fun handleResponse(detay : List<Detail>){
-
+        detay.forEach {
+            println(it.name)
+        }
     }
 
 }
