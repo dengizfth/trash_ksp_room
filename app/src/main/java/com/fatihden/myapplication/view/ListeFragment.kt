@@ -63,7 +63,7 @@ class ListeFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
-        mDisposable.clear()
+        mDisposable.clear() // Ram'de yer kaplayan geçici verileri uygulama kapatılınca Ram'deki verileri temizlemek için tercih edilir .
     }
 
 }
