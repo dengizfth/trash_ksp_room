@@ -26,8 +26,10 @@ import com.fatihden.myapplication.db.DetailDAO
 import com.fatihden.myapplication.db.DetailDatabase
 import com.fatihden.myapplication.model.Detail
 import com.google.android.material.snackbar.Snackbar
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.internal.disposables.ArrayCompositeDisposable
+import io.reactivex.rxjava3.schedulers.Schedulers
 import java.io.ByteArrayOutputStream
 import java.io.IOException
 
@@ -185,6 +187,10 @@ class DetailFragment : Fragment() {
 
                 //RxJava
 
+                detailDAO.insert(detayInsert)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(this::handleResponseForInsert)
 
 
 
@@ -192,6 +198,10 @@ class DetailFragment : Fragment() {
 
         }
 
+    }
+
+    private fun handleResponseForInsert(){
+        // İnsert işlemden sonra burası çalışır.
     }
 
     override fun onDestroy() {
