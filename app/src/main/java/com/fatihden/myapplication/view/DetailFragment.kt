@@ -216,6 +216,7 @@ class DetailFragment : Fragment() {
         super.onDestroy()
 
         _binding = null
+        mDisposable.clear()
     }
 
     fun registerLauncher() {
