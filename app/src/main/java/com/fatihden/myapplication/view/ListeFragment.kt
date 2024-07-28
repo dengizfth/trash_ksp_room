@@ -10,6 +10,7 @@ import androidx.room.Room
 import com.fatihden.myapplication.databinding.FragmentListeBinding
 import com.fatihden.myapplication.db.DetailDAO
 import com.fatihden.myapplication.db.DetailDatabase
+import com.fatihden.myapplication.model.Detail
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -72,8 +73,11 @@ class ListeFragment : Fragment() {
             detailDAO.getAll()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe()
+                .subscribe(this::handleResponse)
         )
+    }
+    private fun handleResponse(detay : List<Detail>){
+
     }
 
 }
