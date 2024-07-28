@@ -1,4 +1,18 @@
 package com.fatihden.myapplication.adapter
 
-class DetailAdapter {
+import androidx.recyclerview.widget.RecyclerView
+import com.fatihden.myapplication.databinding.CardViewBinding
+
+class DetailAdapter : RecyclerView.Adapter<DetailAdapter.DetailHolder>() {
+
+    class DetailHolder(
+        val binding:CardViewBinding
+    ) : RecyclerView.ViewHolder(binding.root)
+    {
+
+
+    }
+
+
+
 }
