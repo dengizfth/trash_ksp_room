@@ -205,7 +205,9 @@ class DetailFragment : Fragment() {
     }
 
     private fun handleResponseForInsert(){
-        // İnsert işlemden sonra burası çalışır.
+        // İnsert işlemden sonra burası çalışır. Buraki Fuck'ın yukarıda tetiklenir.
+        val action  = DetailFragmentDirections.actionDetailFragmentToListeFragment()
+
     }
 
     override fun onDestroy() {
