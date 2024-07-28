@@ -187,10 +187,14 @@ class DetailFragment : Fragment() {
 
                 //RxJava
 
-                detailDAO.insert(detayInsert)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(this::handleResponseForInsert)
+                mDisposable.add(
+                    detailDAO.insert(detayInsert)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(this::handleResponseForInsert)
+
+                )
+
 
 
 
