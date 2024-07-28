@@ -26,6 +26,8 @@ import com.fatihden.myapplication.db.DetailDAO
 import com.fatihden.myapplication.db.DetailDatabase
 import com.fatihden.myapplication.model.Detail
 import com.google.android.material.snackbar.Snackbar
+import io.reactivex.rxjava3.disposables.CompositeDisposable
+import io.reactivex.rxjava3.internal.disposables.ArrayCompositeDisposable
 import java.io.ByteArrayOutputStream
 import java.io.IOException
 
@@ -46,6 +48,9 @@ class DetailFragment : Fragment() {
     // Database :
     private lateinit var db : DetailDatabase
     private lateinit var detailDAO: DetailDAO
+
+    //RxJava3
+    private val mDisposable = CompositeDisposable()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -175,7 +180,12 @@ class DetailFragment : Fragment() {
                 kucukBitMap.compress(Bitmap.CompressFormat.PNG , 50 , outputStream)
                 val byteDizisi = outputStream.toByteArray()
 
-                val tarif = Detail(isim,detay,byteDizisi)
+                val detayInsert = Detail(isim,detay,byteDizisi)
+                //detailDAO.insert(detayInsert)  // RxJava3 ile tekrar aşağıda yazıldı
+
+                //RxJava
+
+
 
 
             }
