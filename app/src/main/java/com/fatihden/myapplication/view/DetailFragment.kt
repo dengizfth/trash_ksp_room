@@ -189,9 +189,9 @@ class DetailFragment : Fragment() {
 
                 mDisposable.add(
                     detailDAO.insert(detayInsert)
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(this::handleResponseForInsert)
+                        .subscribeOn(Schedulers.io()) // Arka planda işlemi yaptırır
+                        .observeOn(AndroidSchedulers.mainThread()) // ön planda gösterir
+                        .subscribe(this::handleResponseForInsert) // fund'unu tetikler
 
                 )
 
